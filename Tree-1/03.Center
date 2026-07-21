@@ -24,7 +24,7 @@ int main()
     dist.assign(n+1,0);
     parent.resize(n+1);
     
-    for(int i = 0;i<=n-1;i++){
+    for(int i = 0;i<n-1;i++){
         int x,y;
         cin>>x>>y;
         
