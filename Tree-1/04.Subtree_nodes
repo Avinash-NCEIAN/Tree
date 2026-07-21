@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> g;
+vector<int> subtree_sz;
+
+void dfs(int node,int par)
+{
+    subtree_sz[node] = 1;
+    
+    for(auto v: g[node]){
+        if(v != par){
+            dfs(v,node);
+            subtree_sz[node] += subtree_sz[v];
+        }
+    }
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    g.resize(n+1);
+    subtree_sz.resize(n+1);
+    
+    for(int i = 0;i<n-1;i++){
+        int x,y;
+        cin>>x>>y;
+        
+        g[x].push_back(y);
+        g[y].push_back(x);
+        
+    }
+    
+    int root;
+    cin>>root;
+    
+    dfs(root,0);
+    
+    for(int i = 1;i<=n;i++){
+        cout<<i<<" : "<<subtree_sz[i]<<endl;
+    }
+    
+    
+
+    return 0;
+}
